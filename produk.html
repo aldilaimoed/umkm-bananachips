@@ -1,0 +1,175 @@
+<!DOCTYPE html> 
+<html lang="id"> 
+<head> 
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <title>Produk - UMKM Banana Chips</title> 
+  <link rel="stylesheet" href="style.css" /> 
+</head> 
+<body> 
+    <nav>  
+        <div class="nav-container">  
+            <div class="logo">  
+            <img src="images/bnnlogo.png" alt="Logo Kopi Nusantara" />  
+            </div>  
+                <ul class="nav-menu">  
+                    <li><a href="index.html" class="active">Beranda</a></li>  
+                    <li><a href="tentang.html">Tentang Kami</a></li>  
+                    <li><a href="produk.html">Produk</a></li>  
+                    <li><a href="galeri.html">Galeri</a></li>  
+                    <li><a href="kontak.html">Kontak</a></li>  
+                </ul>  
+        </div> 
+    </nav>
+
+<main>
+  <h2>Produk Unggulan Kami</h2>   
+  <p>Berikut daftar produk Banana Chips kami:</p>  
+
+<table border="1" cellspacing="0" cellpadding="8">  
+  <thead>  
+    <tr>  
+      <th>Produk</th>  
+      <th>Harga</th> 
+    </tr>  
+  </thead>  
+
+  <tbody>  
+    <tr>  
+      <td>Pisang Cokelat</td>   
+      <td>Rp 10.000</td> 
+    </tr> 
+
+    <tr>  
+      <td>Pisang Strawberry</td>   
+      <td>Rp 10.000</td>  
+    </tr>  
+
+    <tr> 
+      <td>Pisang Cokelat Keju</td>   
+      <td>Rp 15.000</td>  
+    </tr> 
+
+    <tr> 
+      <td>Pisang Tiramisu</td>  
+      <td>Rp 12.000</td>  
+    </tr> 
+
+    <tr>  
+      <td>Pisang Matcha</td>  
+      <td>Rp 12.000</td>  
+    </tr> 
+
+    <tr>  
+      <td colspan="2" style="text-align: center; background-color: #eee;"> Semua harga sudah termasuk PPN </td>  
+    </tr>  
+  </tbody>
+</table>   
+
+    <h3>Profil Produk</h3> 
+    <img src="images/brnd.png" alt="Kemasan Kopi Arabika" width="300" /> 
+    
+     
+    <h3>Dengarkan Cerita Kami</h3> 
+    <audio controls> 
+      <source src="audio/asmr.mp3" type="audio/mpeg"> 
+      Audio tidak tersedia di browser Anda. 
+    </audio> 
+
+     <h3>Video Kami</h3> 
+        <video width="300" height="200" controls> 
+        <source src="video/pisang.mp4" type="video/mp4"> 
+        Browser Anda tidak mendukung video.
+    </video>
+        
+        <h2>Form Pemesanan</h2> 
+        <form onsubmit="return cekForm()"> 
+        <input type="text" id="namaProduk" placeholder="Nama Produk"><br> 
+        <input type="text" id="jumlah" placeholder="Jumlah"><br> 
+        <br><button type="submit">Pesan</button>
+        </form>
+        </div>
+
+         <!-- === Bagian Percabangan: Kategori Usia === -->
+        <h2>Cek Kategori Usia Pelanggan</h2>
+        <input type="number" id="usia" placeholder="Masukkan usia Anda">
+        <button onclick="cekUsia()">Cek</button>
+        <p id="hasil"></p>
+        </div>
+
+        <!-- === Bagian Fungsi: Hitung Total Belanja === -->
+        <h2>Hitung Total Belanja</h2>
+        <form onsubmit="tampilTotal(event)">
+        <input type="number" id="harga" placeholder="Harga per item (Rp)">
+        <br><input type="number" id="jumlah" placeholder="Jumlah barang">
+        <br>
+        <button type="submit">Hitung</button>
+        </form>
+        <p id="total"></p>
+
+  </main> 
+
+  <footer> 
+    <p>&copy; 2025 Banana chips</p> 
+  </footer> 
+ <script>
+ let rating = 4; 
+
+        if (rating >= 4.5) { 
+        document.getElementById("hasil-rating").textContent = "★★★★★ Sangat Disarankan"; 
+        } else if (rating >= 3) { 
+        document.getElementById("hasil-rating").textContent = "★★★ Rekomendasi Biasa"; 
+        } else { 
+        document.getElementById("hasil-rating").textContent = "★ Tidak Direkomendasikan"; 
+        } 
+
+        let layanan = ["Gratis Ongkir", "Bayar di Tempat", "Garansi 30 Hari"]; 
+        layanan.forEach(function(item) { 
+            let li = document.createElement("li");  
+            li.textContent = item; 
+            document.getElementById("layanan-list").appendChild(li); 
+        }); 
+
+        // === Percabangan ===
+        function cekUsia() {
+        let usia = document.getElementById("usia").value;
+        let hasil = "";
+        if (usia < 13) hasil = "Anak-anak";
+        else if (usia <= 17) hasil = "Remaja";
+        else if (usia <= 60) hasil = "Dewasa";
+        else hasil = "Lansia";
+
+        document.getElementById("hasil").innerText = "Kategori: " + hasil;
+        }
+
+        // === Fungsi hitungTotal ===
+        function hitungTotal(harga, jumlah) {
+        return harga * jumlah;
+        }
+        function tampilTotal(event) {
+        event.preventDefault();
+        const harga = document.getElementById("harga").value;
+        const jumlah = document.getElementById("jumlah").value;
+        const total = hitungTotal(harga, jumlah);
+        document.getElementById("total").innerText = "Total belanja: Rp " + total.toLocaleString();
+        }
+
+        function cekForm() { 
+        let nama = document.getElementById("namaProduk").value; 
+        let jumlah = document.getElementById("jumlah").value; 
+        if (nama === "" || jumlah === "") { 
+        alert("Semua kolom wajib diisi."); 
+        return false; 
+        } 
+        if (jumlah <= 0) { 
+        alert("Jumlah harus lebih dari 0"); 
+        return false; 
+        } 
+        alert("Pemesanan berhasil dikirim!"); 
+        return true;
+    }
+    </script>
+
+    </body>
+  </html>
+      

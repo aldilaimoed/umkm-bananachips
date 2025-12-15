@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontak - Banana Chips</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>  
+        <div class="nav-container">  
+            <div class="logo">  
+                <img src="images/bnnlogo.png" alt="Logo Banana Chips" />  
+            </div>  
+            <ul class="nav-menu">  
+                <li><a href="index.html" class="active">Beranda</a></li>  
+                <li><a href="tentang.html">Tentang Kami</a></li>  
+                <li><a href="produk.html">Produk</a></li>  
+                <li><a href="galeri.html">Galeri</a></li>  
+                <li><a href="kontak.html">Kontak</a></li>  
+            </ul>  
+        </div> 
+    </nav>
+
+    <main>
+        <h2>Hubungi Kami</h2>
+        <p>Silakan isi formulir berikut untuk menghubungi tim Banana Chips:</p>
+        
+        <form id="formKontak" action="#" method="post">
+            <label for="nama">Nama: </label> <br>
+            <input type="text" id="nama" name="nama" required> <br><br>
+
+            <label for="email">Email:</label> <br>
+            <input type="email" id="email" name="email" required> <br><br>
+
+            <label for="hp">Nomor HP:</label><br>
+            <input type="text" id="hp" name="hp" placeholder="Hanya angka" required><br><br>
+
+            <label for="kategori">Kategori Pesan: </label> <br>
+            <select name="kategori" id="kategori">
+                <option value="umum">Umum</option>
+                <option value="produk">Produk</option>
+                <option value="kerjasama">Kerja Sama</option>
+            </select> <br><br>
+
+            <label for="tanggal">Tanggal Pengiriman Pesan:</label> <br>
+            <input type="date" id="tanggal" name="tanggal"> <br><br>
+
+            <label for="pesan">Pesan:</label> <br>
+            <textarea name="pesan" id="pesan" rows="5" cols="30"></textarea> <br><br>
+
+            <label for="file">Lampirkan Gambar/Dokumen:</label> <br>
+            <input type="file" id="file" name="file"> <br><br>
+
+            <div class="checkbox-container">
+            <input type="checkbox" id="langganan" name="langganan" value="ya">
+            <br> <label for="langganan">Saya Ingin Menerima News Letter</label> <br><br>
+
+            <button type="submit">Kirim</button>
+            <button type="button" id="clearBtn" class="clear-btn">Clear Data</button>
+        
+            <p id="errorMsg" style="color:red; font-weight:bold;"></p>
+            <p id="successMsg" style="color:green; font-weight:bold;"></p>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Banana Chips</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("formKontak");
+            const nama = document.getElementById("nama");
+            const email = document.getElementById("email");
+            const pesan = document.getElementById("pesan");
+            const hp = document.getElementById("hp"); 
+            const errorMsg = document.getElementById("errorMsg");
+            const successMsg = document.getElementById("successMsg");
+            const clearBtn = document.getElementById("clearBtn");
+
+            // Validasi agar hanya angka
+            hp.addEventListener("input", function() {
+                this.value = this.value.replace(/[^0-9]/g, "");
+            });
+
+            // Event saat form disubmit
+            form.addEventListener("submit", function (e) {
+                e.preventDefault(); // agar halaman tidak reload
+                errorMsg.textContent = "";
+                successMsg.textContent = "";
+
+                if (nama.value === "" || email.value === "" || hp.value === "" || pesan.value === "") {
+                    errorMsg.textContent = "⚠️ Semua field wajib diisi!";
+                } else {
+                    successMsg.textContent = "✅ Pesan berhasil dikirim!";
+                }
+            });
+
+            // Tombol Clear Data
+            clearBtn.addEventListener("click", function () {
+                form.reset();
+                errorMsg.textContent = "";
+                successMsg.textContent = "";
+            });
+        });
+    </script>
+</body>
+</html>
